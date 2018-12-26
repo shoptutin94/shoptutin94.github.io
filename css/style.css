@@ -1,0 +1,14 @@
+body{
+     background: #ccc;
+}
+
+.name{
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: normal;
+}
+
+.cost_style{
+    color: #ff000061;
+    font-weight: bold;
+}
