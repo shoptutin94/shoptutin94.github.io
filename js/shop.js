@@ -8,8 +8,9 @@
 //     })  
 
 window.onload = function(){
+    cart = {};
     // послать запрос
-
+    
     let getJSON = function(url, callback){
         let xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
@@ -54,12 +55,29 @@ window.onload = function(){
         out += ` <img src="${data[i]['gsx$image']['$t']}" alt="">`
         out += ` <p class="sum">На складе: ${data[i]['gsx$kg']['$t']} кг</p>`
         out += ` <p class="cost">Цена: <span class="cost_style">${data[i]['gsx$cost']['$t']} </span>руб.</p>`
-        out += ` <p class="buy"><button class="btn btn-success" data="${data[i]['gsx$id']['$t']}">Купить</button></p>`
+        out += ` <p class="buy"><button class="btn btn-success" name="add-to-cart" data="${data[i]['gsx$id']['$t']}">Купить</button></p>`
         out += ` </div>`
         out += ` </div>`
     }
         }
         return out;
+}
+
+document.onclick = function(e){
+    console.log(e.target.attributes.data.nodeValue);
+    if(e.target.attributes.data.nodeValue == 'add-to-cart'){
+          addToCart(e.target.attributes.data.nodeValue)
+    }
+}
+
+function addToCart(elem){
+        if(cart[elem]!==undefined){
+            cart[elem]++;
+        }
+        else{
+            cart[elem]=1;
+        }
+        console.log(cart);
 }
 
 }
